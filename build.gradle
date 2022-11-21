@@ -25,6 +25,11 @@ dependencies {
     //Kafka
     implementation 'org.springframework.kafka:spring-kafka'
     testImplementation 'org.springframework.kafka:spring-kafka-test'
+
+    // mappers objets-JSON
+    implementation 'com.fasterxml.jackson.core:jackson-core:2.14.0'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.14.0'
+
 }
 
 tasks.named('test') {

@@ -1,4 +1,4 @@
-package com.example.microservicetemplate;
+package com.polylink.usermicroservice;
 
 
 import org.springframework.context.annotation.Bean;

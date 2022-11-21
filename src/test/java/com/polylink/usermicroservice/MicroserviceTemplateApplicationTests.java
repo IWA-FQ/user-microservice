@@ -1,4 +1,4 @@
-package com.example.microservicetemplate;
+package com.polylink.usermicroservice;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
