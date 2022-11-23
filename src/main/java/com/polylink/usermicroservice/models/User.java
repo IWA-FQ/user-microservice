@@ -8,16 +8,16 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(	name = "users", 
+@Table(	name = "\"user\"",
 		uniqueConstraints = { 
-			@UniqueConstraint(columnNames = "username"),
+
 			@UniqueConstraint(columnNames = "email") 
 		})
 public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "\"id_user\"")
 	private Long id;
-	private String username;
 
 
 	@NotBlank
@@ -36,7 +36,7 @@ public class User {
 	private Integer city_code;
 
 	private String work_field;
-	private String cv_field;
+	private String cv_link;
 
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(	name = "user_roles", 
@@ -47,7 +47,7 @@ public class User {
 	public User() {
 	}
 
-	public User(Long id, String email, String password, String firstname, String lastname, String city, Integer city_code, String work_field, String cv_field) {
+	public User(Long id, String email, String password, String firstname, String lastname, String city, Integer city_code, String work_field, String cv_link) {
 		this.id = id;
 
 		this.email = email;
@@ -57,7 +57,7 @@ public class User {
 		this.city = city;
 		this.city_code = city_code;
 		this.work_field = work_field;
-		this.cv_field = cv_field;
+		this.cv_link = cv_link;
 	}
 
 	public User(String email, String password, String firstname, String lastname) {
@@ -123,12 +123,12 @@ public class User {
 		this.work_field = work_field;
 	}
 
-	public String getCv_field() {
-		return cv_field;
+	public String getCv_link() {
+		return cv_link;
 	}
 
-	public void setCv_field(String cv_field) {
-		this.cv_field = cv_field;
+	public void setCv_link(String cv_link) {
+		this.cv_link = cv_link;
 	}
 
 	public String getFirstname() {
@@ -145,13 +145,5 @@ public class User {
 
 	public void setLastname(String lastname) {
 		this.lastname = lastname;
-	}
-
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
 	}
 }

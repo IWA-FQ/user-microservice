@@ -46,8 +46,7 @@ public class AuthController {
 
 	@Autowired
 	JwtUtils jwtUtils;
-	@Autowired
-	private UserDetailsServiceImpl userDetailsService;
+
 
 	@PostMapping("/signin")
 	public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
@@ -65,8 +64,7 @@ public class AuthController {
 
 		return ResponseEntity.ok(new JwtResponse(jwt,
 												 userDetails.getId(), 
-												 userDetails.getUsername(), 
-												 userDetails.getEmail(), 
+												 userDetails.getUsername(),
 												 roles));
 	}
 

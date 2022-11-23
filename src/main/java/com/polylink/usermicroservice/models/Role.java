@@ -3,10 +3,11 @@ package com.polylink.usermicroservice.models;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "roles")
+@Table(name = "role")
 public class Role {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "\"id_role\"")
 	private Integer id;
 
 	@Enumerated(EnumType.STRING)

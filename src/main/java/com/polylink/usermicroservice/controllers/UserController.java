@@ -25,13 +25,13 @@ public class UserController {
         return user;
     }
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteUser(@PathVariable(name = "id", required = true) Long id) {
+    public ResponseEntity<?> deleteUser(@PathVariable(name = "id") Long id) {
         userRepository.deleteById(id);
         return ResponseEntity.ok().build();
     }
     @PatchMapping("/{id}")
-    public ResponseEntity<?> updateUser(@PathVariable(name = "id", required = true) Long id,@RequestBody User user){
-        User user1 = new User(id,user.getEmail(),user.getPassword(), user.getFirstname(), user.getLastname(), user.getCity(), user.getCity_code(), user.getWork_field(),user.getCv_field());
+    public ResponseEntity<?> updateUser(@PathVariable(name = "id") Long id,@RequestBody User user){
+        User user1 = new User(id,user.getEmail(),user.getPassword(), user.getFirstname(), user.getLastname(), user.getCity(), user.getCity_code(), user.getWork_field(),user.getCv_link());
         userRepository.save(user1);
         return ResponseEntity.ok().build();
     }
