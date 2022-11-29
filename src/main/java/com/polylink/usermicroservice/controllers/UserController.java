@@ -14,6 +14,11 @@ import java.util.Optional;
 public class UserController {
     @Autowired
     private UserRepository userRepository;
+    @GetMapping("/health")
+    public ResponseEntity<?> healthCHeck() {
+
+        return ResponseEntity.ok("User Microservice is up and running");
+    }
     @GetMapping
     public List<User> getAllUser() {
         List<User> userlist = userRepository.findAll();
