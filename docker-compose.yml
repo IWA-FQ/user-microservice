@@ -13,7 +13,7 @@ services:
       server.port: 8080
 
       # Kafka
-      spring.kafka.bootstrap-servers: kafka:9092
+      spring.kafka.bootstrap-servers: http://kafka:9092
       spring.kafka.consumer.group-id: polylink
 
       # App Properties
