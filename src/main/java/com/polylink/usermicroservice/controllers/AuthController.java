@@ -1,18 +1,19 @@
 package com.polylink.usermicroservice.controllers;
 
 
+import com.polylink.usermicroservice.dto.ResponseUser;
 import com.polylink.usermicroservice.models.ERole;
 import com.polylink.usermicroservice.models.Role;
 import com.polylink.usermicroservice.models.User;
 import com.polylink.usermicroservice.payload.request.LoginRequest;
 import com.polylink.usermicroservice.payload.request.SignupRequest;
+import com.polylink.usermicroservice.payload.response.JwtRegisterResponse;
 import com.polylink.usermicroservice.payload.response.JwtResponse;
 import com.polylink.usermicroservice.payload.response.MessageResponse;
 import com.polylink.usermicroservice.repository.RoleRepository;
 import com.polylink.usermicroservice.repository.UserRepository;
 import com.polylink.usermicroservice.security.jwt.JwtUtils;
 import com.polylink.usermicroservice.security.services.UserDetailsImpl;
-import com.polylink.usermicroservice.security.services.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -61,10 +62,10 @@ public class AuthController {
 		List<String> roles = userDetails.getAuthorities().stream()
 				.map(item -> item.getAuthority())
 				.collect(Collectors.toList());
+		User user = userRepository.findByEmail(loginRequest.getEmail()).get();
 
-		return ResponseEntity.ok(new JwtResponse(jwt,
-												 userDetails.getId(), 
-												 userDetails.getUsername(),
+
+		return ResponseEntity.ok(new JwtResponse(jwt,new ResponseUser(user),
 												 roles));
 	}
 
@@ -83,7 +84,7 @@ public class AuthController {
 							 signUpRequest.getEmail(),
 							 encoder.encode(signUpRequest.getPassword()),signUpRequest.getFirstname(),signUpRequest.getLastname());
 
-		Set<String> strRoles = signUpRequest.getRole();
+		Set<String> strRoles = signUpRequest.getRoles();
 		Set<Role> roles = new HashSet<>();
 
 		if (strRoles == null) {
@@ -109,9 +110,9 @@ public class AuthController {
 		}
 
 		user.setRoles(roles);
-		userRepository.save(user);
-
-		return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
+		User newuser = userRepository.save(user);
+		String jwt = jwtUtils.generateJwtTokenRegister(newuser.getEmail());
+		return ResponseEntity.ok(new JwtRegisterResponse(jwt,new ResponseUser(newuser)));
 	}
 
 

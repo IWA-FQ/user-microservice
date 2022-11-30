@@ -18,11 +18,18 @@ public class SignupRequest {
     @Email
     private String email;
     
-    private Set<String> role;
+    private Set<String> roles;
     
     @NotBlank
     @Size(min = 6, max = 40)
     private String password;
+    @Size(min = 3, max = 20)
+    private String city;
+
+    private Integer city_code;
+
+    private String work_field;
+    private String cv_link;
 
     public String getFirstname() {
         return firstname;
@@ -56,11 +63,11 @@ public class SignupRequest {
         this.password = password;
     }
     
-    public Set<String> getRole() {
-      return this.role;
+    public Set<String> getRoles() {
+      return this.roles;
     }
     
-    public void setRole(Set<String> role) {
-      this.role = role;
+    public void setRoles(Set<String> roles) {
+      this.roles = roles;
     }
 }
