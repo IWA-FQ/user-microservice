@@ -26,5 +26,6 @@ jobs:
         uses: dokku/github-action@master
         with:
           branch: 'main'
+          git_push_flags: '--force'
           git_remote_url: 'ssh://dokku@cluster-ig5.igpolytech.fr:22/polylink-user-ms'
           ssh_private_key: ${{ secrets.DOKKU_SSH }}
