@@ -23,7 +23,6 @@ public class TestController {
 		return "User Content.";
 	}
 
-
 	@GetMapping("/recruiter")
 	@PreAuthorize("hasRole('RECRUITER')")
 	public Principal adminAccess(Principal principal) {
