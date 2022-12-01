@@ -110,6 +110,11 @@ public class AuthController {
 		}
 
 		user.setRoles(roles);
+		user.setCity(signUpRequest.getCity());
+		user.setCity_code(signUpRequest.getCity_code());
+		user.setCv_link(signUpRequest.getCv_link());
+		user.setWork_field(signUpRequest.getWork_field());
+
 		User newuser = userRepository.save(user);
 		String jwt = jwtUtils.generateJwtTokenRegister(newuser.getEmail());
 		return ResponseEntity.ok(new JwtRegisterResponse(jwt,new ResponseUser(newuser)));
