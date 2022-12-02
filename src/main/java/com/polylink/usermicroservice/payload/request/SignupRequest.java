@@ -70,4 +70,36 @@ public class SignupRequest {
     public void setRoles(Set<String> roles) {
       this.roles = roles;
     }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public Integer getCity_code() {
+        return city_code;
+    }
+
+    public void setCity_code(Integer city_code) {
+        this.city_code = city_code;
+    }
+
+    public String getWork_field() {
+        return work_field;
+    }
+
+    public void setWork_field(String work_field) {
+        this.work_field = work_field;
+    }
+
+    public String getCv_link() {
+        return cv_link;
+    }
+
+    public void setCv_link(String cv_link) {
+        this.cv_link = cv_link;
+    }
 }
