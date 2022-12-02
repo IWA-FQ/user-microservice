@@ -29,7 +29,6 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
@@ -85,6 +84,7 @@ public class AuthController {
 							 encoder.encode(signUpRequest.getPassword()),signUpRequest.getFirstname(),signUpRequest.getLastname());
 
 		Set<String> strRoles = signUpRequest.getRoles();
+		System.out.println(strRoles);
 		Set<Role> roles = new HashSet<>();
 
 		if (strRoles == null) {
